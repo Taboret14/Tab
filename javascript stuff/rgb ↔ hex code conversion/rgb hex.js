@@ -1,6 +1,5 @@
 //Two functions to convert between RGB and Hex color codes
 
-
 //============================================================ Rgb to Hex ============================================================
 
 function rgbToHex(rgb){ //example color magenta rgb(255, 0, 255)
