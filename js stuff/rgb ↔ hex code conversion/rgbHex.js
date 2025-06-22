@@ -6,7 +6,7 @@ function rgbToHex(rgb){ //example color magenta rgb(255, 0, 255)
 
     //Validation
     let error = "Invalid rgb";
-    let isValidRgb = rgb.match(/rgb\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*\)/gi) // regex to match rgb
+    let isValidRgb = rgb.match(/rgba?\(\s*\d+\s*,\s*\d+\s*,\s*\d+(?:\s*,\s*(?:\d+|\d*\.\d+))?\s*\)/gi) // regex to match rgba
     if(!isValidRgb){
         return error
     }
@@ -20,7 +20,7 @@ function rgbToHex(rgb){ //example color magenta rgb(255, 0, 255)
     let gg = parseInt(rgb.slice(firstComma + 1, secondComma))           // rgb(255, [0], 255) green
     let bb = parseInt(rgb.slice(secondComma + 1, roundBracketClose))    // rgb(255, 0, [255]) blue
 
-    if
+    if //if any (some) of the number is under 0 or over 255 it returns error
     (
         [rr, gg, bb].some(function(e){
             return e < 0 || e > 255
@@ -109,7 +109,7 @@ function hexToRgb(hex){ //example color magenta #ff00ff
 
 //============================================================ Test ============================================================
 
-let magentaInHex = rgbToHex('rgb(255, 0, 255)')
+let magentaInHex = rgbToHex('rgba(255, 0, 255, 0.4)')
 let magentaInRgb = hexToRgb('#FF00ff')
 let magentaInRgbFromShorthandHex = hexToRgb('#f0f')
 
