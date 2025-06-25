@@ -2,3 +2,6 @@ git status
 git add .
 git commit -m "Update"
 git push origin main
+
+1. Unstage a file
+git restore --staged [file]
