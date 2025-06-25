@@ -203,6 +203,8 @@ console.log(magentaInHex1) // #ff00ff
 console.log(magentaInHex2) // #ff00ff
 console.log(magentaInRgb) // rgb(255, 0, 255)
 console.log(magentaInRgbFromShorthandHex) // rgb(255, 0, 255)
+console.log(invalidHex) // Invalid hex
+console.log(invalidRgb) // Invalid rgb
 
 // Displaying result codes
 to[0].textContent = magentaInHex1
