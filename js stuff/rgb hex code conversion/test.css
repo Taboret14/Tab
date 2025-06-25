@@ -1,0 +1,36 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    height: 10rem;
+    width: 15rem;
+    margin: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    font-size: 150%;
+    border-radius: 1rem;
+    border: 0.2rem solid rgb(40, 0, 90);
+    color: rgb(40, 0, 90);
+}
+
+.to,.from{
+    font-weight: bold;
+}
+
+.error{
+    font-style: italic;
+    font-size: 90%;
+}
