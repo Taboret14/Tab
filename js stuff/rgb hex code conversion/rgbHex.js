@@ -194,6 +194,10 @@ let magentaInRgb = hexToRgb('#FF00Ff', from[2])
 // Hex shorthand
 let magentaInRgbFromShorthandHex = hexToRgb('#f0F', from[3])
 
+//Error examples
+let invalidHex = hexToRgb('#FG00FG', from[4]) // Invalid hex
+let invalidRgb = rgbToHex('rgb(256, -1, 255)', from[5]) // Invalid rgb
+
 // Console logging result codes
 console.log(magentaInHex1) // #ff00ff
 console.log(magentaInHex2) // #ff00ff
@@ -205,9 +209,13 @@ to[0].textContent = magentaInHex1
 to[1].textContent = magentaInHex2
 to[2].textContent = magentaInRgb
 to[3].textContent = magentaInRgbFromShorthandHex
+to[4].textContent = invalidHex // Invalid hex
+to[5].textContent = invalidRgb // Invalid rgb
 
 // Setting background colors
 boxes[0].style.backgroundColor = magentaInHex1
 boxes[1].style.backgroundColor = magentaInHex2
 boxes[2].style.backgroundColor = magentaInRgb
 boxes[3].style.backgroundColor = magentaInRgbFromShorthandHex
+boxes[4].style.backgroundColor = invalidHex // Invalid hex
+boxes[5].style.backgroundColor = invalidRgb // Invalid rgb
