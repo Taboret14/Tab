@@ -1,4 +1,4 @@
-//Two functions to convert between RGB and Hex color codes
+//Two functions to convert between RGB and Hex color codes (idk it's kind of useless)
 
 //============================================================ Rgb to Hex ============================================================
 
@@ -187,7 +187,7 @@ function hexToRgb(hex, /*optional options object*/ {noBrackets = false, print = 
 
     if(print){
         print.textContent = printText
-    }
+    }   
 
     return rgb;
 }
