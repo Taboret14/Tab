@@ -1,4 +1,4 @@
-//Two functions to convert between RGB and Hex color codes (idk it's kind of useless)
+//Two functions to convert between RGB and Hex color codes
 
 //============================================================ Rgb to Hex ============================================================
 
