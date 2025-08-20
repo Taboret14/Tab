@@ -2,12 +2,12 @@
 
 //============================================================ Rgb to Hex ============================================================
 
-function rgbToHex(rgb, print /*optional*/){ //example color magenta rgb(255, 0, 255)
+function rgbToHex(rgb, /*optional options object*/ {noHashtag = false, print = null} = {}){ //example color magenta rgb(255, 0, 255)
 
     // Print code
     let printText = rgb
  
-    // Validation regexes
+    // Validation regex
     let errorRgb = "Invalid rgb";
     let errorRgba = "Invalid rgba";
     let errorType = "Invalid type";
@@ -15,7 +15,6 @@ function rgbToHex(rgb, print /*optional*/){ //example color magenta rgb(255, 0, 
     let isValidRgba = rgb.match(/rgba\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*,\s*(\d+|\d*\.\d+)\s*\)/) // regex to match rgba
 
     // Errors
-
     // String check
     if(typeof(rgb) !== 'string'){
         print.textContent = printText
@@ -102,29 +101,37 @@ function rgbToHex(rgb, print /*optional*/){ //example color magenta rgb(255, 0, 
 
     let hex = `#${hexArr[0]}${hexArr[1]}${hexArr[2]}`
 
+    
+    if(noHashtag){
+        hex = hex.slice(1, hex.length)
+    }
+
     if(print){
         print.textContent = printText
-        return hex
-    }else{
-        return hex
     }
+
+    return hex
 
 }
 
 //============================================================ Hex to Rgb ============================================================
 
-function hexToRgb(hex, print /*optional*/){ // example color magenta #ff00ff
+function hexToRgb(hex, /*optional options object*/ {noBrackets = false, print = null} = {}){ // example color magenta #ff00ff
 
     let printText = hex
     let rgb
+    let noBracketsRgb
 
     hex = hex.replace("#", "") // removes #
     hex = hex.toLowerCase() // handles inconsistent input codes like #FF00ff
 
+    // Errors
     //Validation regex
     let error = "Invalid hex"
     let isValidHex = hex.match(/^([0-9a-fA-F]{6})$/)
     let isValidHexShort = hex.match(/^([0-9a-fA-F]{3})$/)
+
+    // String check
 
     if(!isValidHex && !isValidHexShort || typeof hex !== 'string'){
         print.textContent = printText
@@ -148,6 +155,8 @@ function hexToRgb(hex, print /*optional*/){ // example color magenta #ff00ff
             return(high * 16) +(low * 1)
         })
 
+        noBracketsRgb = `${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]}`
+
         rgb = `rgb(${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]})`
 
     }else if(hex.length === 3){ // magenta shorthand #f0f
@@ -167,15 +176,20 @@ function hexToRgb(hex, print /*optional*/){ // example color magenta #ff00ff
             return high * 16 + low
         })
 
+        noBracketsRgb = `${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]}`
+
         rgb = `rgb(${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]})`
+    }
+
+    if(noBrackets){
+        rgb = noBracketsRgb
     }
 
     if(print){
         print.textContent = printText
-        return rgb
-    }else{
-        return rgb
     }
+
+    return rgb;
 }
 
 //============================================================ Test ============================================================
@@ -186,17 +200,17 @@ const to = document.querySelectorAll('.to')
 const boxes = document.querySelectorAll('.container')
 
 // Rgb
-let magentaInHex1 = rgbToHex('rgb(255, 0, 255)', from[0])
+let magentaInHex1 = rgbToHex('rgb(255, 0, 255)', {print: from[0]})
 // Rgba
-let magentaInHex2 = rgbToHex('rgba(255, 0, 255, 0.5)', from[1])
+let magentaInHex2 = rgbToHex('rgba(255, 0, 255, 0.5)', {print: from[1]})
 // Hex
-let magentaInRgb = hexToRgb('#FF00Ff', from[2])
+let magentaInRgb = hexToRgb('#FF00Ff', {print: from[2]})
 // Hex shorthand
-let magentaInRgbFromShorthandHex = hexToRgb('#f0F', from[3])
+let magentaInRgbFromShorthandHex = hexToRgb('#f0F', {print: from[3]})
 
 //Error examples
-let invalidHex = hexToRgb('#FG00FG', from[4]) // Invalid hex
-let invalidRgb = rgbToHex('rgb(256, -1, 255)', from[5]) // Invalid rgb
+let invalidHex = hexToRgb('#FG00FG', {print: from[4]}) // Invalid hex
+let invalidRgb = rgbToHex('rgb(255, -1, 255)', {print: from[5]}) // Invalid rgb
 
 // Console logging result codes
 console.log(magentaInHex1) // #ff00ff
@@ -221,3 +235,6 @@ boxes[2].style.backgroundColor = magentaInRgb
 boxes[3].style.backgroundColor = magentaInRgbFromShorthandHex
 boxes[4].style.backgroundColor = invalidHex // Invalid hex
 boxes[5].style.backgroundColor = invalidRgb // Invalid rgb
+
+console.log('Hex without hashtag', rgbToHex('rgb(255, 255, 255)', {noHashtag: 'y'}))
+console.log('Rgb without brackets', hexToRgb('ffffff', {noBrackets: 'y'}))
